@@ -17,7 +17,7 @@ export default function Logo(props: SVGProps<SVGSVGElement>) {
       />
       <path
         d="M105 17a.998.998 0 01-1 1 1 1 0 01-1-1V5a.998.998 0 00-1-1H88a1 1 0 00-1 1v13a2 2 0 002 2h15c1.654 0 3-1.346 3-3V7h-2v10zM97 7h3v2h-3V7zm0 4h3v2h-3v-2zm-7-4h5v6h-5V7zm0 10v-2h10v2H90z"
-        fill={theme.primaryForeground}
+        fill={theme.pageForeground}
       />
     </svg>
   )
