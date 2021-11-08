@@ -9,35 +9,34 @@ interface FeaturedPostProps {
 export default function FeaturedPost ({ postSummary }: FeaturedPostProps) {
   return <Wrapper>
     <BgImage bg={postSummary.imageUrls.medium} />
-    <Tags>
-      { postSummary.tags.map(tag => <Tag key={tag}>{tag}</Tag>) }
-    </Tags>
-    <Editor>
-        <Avatar src={ postSummary.editor.avatarUrls.small } />
-        <EditorDescription>
-          <EditorName>
-            {postSummary.editor.name}
-          </EditorName>
-          <PostDate>
-            ha 3 dias
-          </PostDate>
-        </EditorDescription>
-    </Editor>
-    <Title>
-      { postSummary.title }
-    </Title>
+    <Content>
+      <Tags>
+        { postSummary.tags.map(tag => <Tag key={tag}>{tag}</Tag>) }
+      </Tags>
+      <Editor>
+          <Avatar src={ postSummary.editor.avatarUrls.small } />
+          <EditorDescription>
+            <EditorName>
+              {postSummary.editor.name}
+            </EditorName>
+            <PostDate>
+              ha 3 dias
+            </PostDate>
+          </EditorDescription>
+      </Editor>
+      <Title>
+        { postSummary.title }
+      </Title>
+    </Content>
   </Wrapper>
 }
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
   position: relative;
   overflow: hidden;
-
-  gap: 24px;
 
   background-color: ${ p => p.theme.primaryBackground };
   color: ${ p => p.theme.primaryForeground };
@@ -58,6 +57,16 @@ const BgImage = styled.div<{bg: string}>`
   z-index: 0;
   opacity: 0.05;
   background-color: blue;
+`
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  gap: 24px;
+
+  z-index: 1;
 `
 
 const Tags = styled.ul`
