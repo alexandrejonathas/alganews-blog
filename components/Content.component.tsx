@@ -21,4 +21,6 @@ const Wrapper = styled.div`
 const Container = styled.div`
   max-width: ${CONTAINER_MAX_WIDTH}px;
   margin: auto;
+
+  padding: 16px;
 `

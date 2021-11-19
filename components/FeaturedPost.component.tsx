@@ -2,36 +2,44 @@ import { Post } from "alexandrejonathas-alganews-sdk"
 import styled from "styled-components"
 import Avatar from "./Avatar.component"
 
+import Link from "next/link"
+import { transparentize } from "polished"
+
 interface FeaturedPostProps {
   postSummary: Post.Summary
 }
 
 export default function FeaturedPost ({ postSummary }: FeaturedPostProps) {
-  return <Wrapper>
-    <BgImage bg={postSummary.imageUrls.medium} />
-    <Content>
-      <Tags>
-        { postSummary.tags.map(tag => <Tag key={tag}>{tag}</Tag>) }
-      </Tags>
-      <Editor>
-          <Avatar src={ postSummary.editor.avatarUrls.small } />
-          <EditorDescription>
-            <EditorName>
-              {postSummary.editor.name}
-            </EditorName>
-            <PostDate>
-              ha 3 dias
-            </PostDate>
-          </EditorDescription>
-      </Editor>
-      <Title>
-        { postSummary.title }
-      </Title>
-    </Content>
-  </Wrapper>
+  const { id, slug } = postSummary 
+  return (
+    <Link href={`/posts/${id}/${slug}`} passHref > 
+      <Wrapper>
+        <BgImage bg={postSummary.imageUrls.medium} />
+        <Content>
+          <Tags>
+            { postSummary.tags.map(tag => <Tag key={tag}>{tag}</Tag>) }
+          </Tags>
+          <Editor>
+              <Avatar src={ postSummary.editor.avatarUrls.small } />
+              <EditorDescription>
+                <EditorName>
+                  {postSummary.editor.name}
+                </EditorName>
+                <PostDate>
+                  ha 3 dias
+                </PostDate>
+              </EditorDescription>
+          </Editor>
+          <Title>
+            { postSummary.title }
+          </Title>
+        </Content>
+      </Wrapper>
+    </Link>
+  )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   display: flex;
   align-items: center;
 
@@ -47,6 +55,16 @@ const Wrapper = styled.div`
   min-height: 256px;
 
   border-radius: ${ p => p.theme.borderRadius };
+
+  text-decoration: none;
+
+  transition: box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px ${ p => transparentize(0.7, p.theme.primaryBackground) };
+  }
 
 `
 
@@ -71,10 +89,12 @@ const Content = styled.div`
 
 const Tags = styled.ul`
   display: flex;
-  
+  list-style: none;
   gap: 8px;
 
-  list-style: none;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `
 
 const Tag = styled.li`

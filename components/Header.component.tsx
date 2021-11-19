@@ -35,6 +35,7 @@ const Container = styled.div`
   height:  ${HEADER_HEIGHT}px;
 
   margin: auto;
+  padding: 0 16px;
 `
 
 const Title = styled.h1`
